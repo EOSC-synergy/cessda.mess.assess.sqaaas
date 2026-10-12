@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.mess:
+      branch: main
+      repo: https://github.com/cessda/cessda.mess
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.mess git:
+        commands:
+        - /usr/bin/env sh .sqa/script.apricot_focused_bison.sh
+        container: qc.acc_sienna_witty_gull
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.mess find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.prussian_sarcastic_buffalo.sh
+        container: qc.doc_scarlet_authentic_butterfly
+      github.com/cessda/cessda.mess git:
+        commands:
+        - /usr/bin/env sh .sqa/script.carmine_eager_crow.sh
+        container: qc.doc_aquamarine_passionate_donkey
+      github.com/cessda/cessda.mess markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cobalt_happy_dhole.sh
+        container: qc.doc_zinnia_motivated_falcon
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.mess licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.ochre_productive_newt.sh
+        container: qc.lic_onyx_carefree_shark
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.mess bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.horizon_hopeful_raven.sh
+        container: qc.sec_red_friendly_cormorant
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.mess flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.taupe_passionate_pangolin.sh
+        container: qc.sty_cerulean_radiant_hippopotamus
+      github.com/cessda/cessda.mess hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.red_understanding_nighthawk.sh
+        container: qc.sty_marina_timid_kookaburra
+      github.com/cessda/cessda.mess jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.butter_diplomatic_swan.sh
+        container: qc.sty_yellow_amiable_hare
+  QC.Uni:
+    repos:
+      github.com/cessda/cessda.mess pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.onyx_warm_catfish.sh
+        container: qc.uni_pineapple_cautious_raccoon
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.mess get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.thunder_easygoing_grasshopper.sh
+        container: qc.ver_zinnia_motivated_wasp
+timeout: 5400
